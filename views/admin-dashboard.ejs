@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Welcome Admin</h1>
+
+    <h2>All Issues</h2>
+    <div id="issues-container">
+        <% issues.forEach(issue => { %>
+            <div class="issue-card">
+                <img src="http://localhost:5000/uploads/<%= issue.image %>">
+                <h3><%= issue.name %></h3>
+                <p><b>Location:</b> <%= issue.location %></p>
+                <p><%= issue.description %></p>
+                <a href="/admin/edit/<%= issue._id %>">Edit</a>
+                <a href="/admin/logout">Logout</a>
+
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
