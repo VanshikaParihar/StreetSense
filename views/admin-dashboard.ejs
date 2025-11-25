@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <h1>Welcome Admin</h1>
+<h1>Admin Dashboard</h1>
+<a href="/admin/logout">Logout</a>
 
-    <h2>All Issues</h2>
-    <div id="issues-container">
-        <% issues.forEach(issue => { %>
-            <div class="issue-card">
-                <img src="http://localhost:5000/uploads/<%= issue.image %>">
-                <h3><%= issue.name %></h3>
-                <p><b>Location:</b> <%= issue.location %></p>
-                <p><%= issue.description %></p>
-                <a href="/admin/edit/<%= issue._id %>">Edit</a>
-                <a href="/admin/logout">Logout</a>
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Image</th>
+        <th>Actions</th>
+    </tr>
 
-            </div>
-        <% }) %>
-    </div>
-</body>
-</html>
+    <% issues.forEach(issue => { %>
+    <tr>
+        <td><%= issue.name %></td>
+        <td><%= issue.location %></td>
+        <td><%= issue.description %></td>
+        <td><%= issue.status %></td>
+        <td>
+            <% if (issue.image) { %>
+                <img src="/uploads/<%= issue.image %>" width="80">
+            <% } else { %> No Image <% } %>
+        </td>
+        <td>
+            <a href="/admin/edit/<%= issue._id %>">Edit</a>
+        </td>
+    </tr>
+    <% }) %>
+</table>
